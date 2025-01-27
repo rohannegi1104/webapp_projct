@@ -2,9 +2,8 @@ pipeline {
     agent any 
     
     environment {
-        DOCKER_CREDENTIALS = 'dockerhub-creds'
-        dockerHubUser = 'rohannegi11'
-        dockerHubPass = 'rohan6814@@'
+        DOCKER_CREDENTIALS = 'dockerhub-creds'  // Credentials ID for DockerHub
+        dockerHubUser = 'rohannegi11'  // DockerHub username
     }
 
     tools {
@@ -47,8 +46,7 @@ pipeline {
         stage("Run Docker Container") {
             steps {
                 script {
-                    
-                    sh "docker run -itd -p 8083:8083 --name webapp_project_container ${dockerHubUser}/webapp_project:latest"
+                    sh "docker run -itd -p 8083:8083 ${dockerHubUser}/webapp_project:latest"
                 }
             }
         }
